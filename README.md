@@ -65,7 +65,7 @@ modules: [
 |Option|Default|Description|Acceptible Values|
 |---|---|---|---|
 |`metals`|`["silver","gold"]`|An array of metals you would like to see prices of.| See list on https://api.metals.live/. Any item listed under "spot" is acceptable. |
-|`updateInterval` | `60 * 60 * 1000` | How often to update prices - in milliseconds. Default is 1 hour. | any integer. However, be careful when using low numbers |
+|`updateInterval` | `60 * 60 * 1000` | How often to update prices - in milliseconds. Default is 1 hour. | Any integer. However, be careful when using low numbers |
 
 ## Future Improvements / Enhancements
 
