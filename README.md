@@ -64,7 +64,7 @@ modules: [
 
 |Option|Default|Description|Acceptible Values|
 |---|---|---|---|
-|`metals`|`["silver","gold"]`|An array of metals you would like to see prices of.| See default https://api.metals.live/. Any item listed under "spot" is acceptable. |
+|`metals`|`["silver","gold"]`|An array of metals you would like to see prices of.| See list on https://api.metals.live/. Any item listed under "spot" is acceptable. |
 
 ## Future Improvements / Enhancements
 
