@@ -23,16 +23,15 @@ cd ~/MagicMirror/modules/MMM-PreciousMetals
 git pull
 ```
 
-## Using the module
-
-To use this module, add it to the modules array in the `~/MagicMirror/config/config.js` file.
-
 ## Limitations
 
 * Only handles US dollars (limitation of the API)
 * Only handles a few metals 
     * Does not handle commodities supported by the API. Only supports metals listed under "spot"
 
+## Using the module
+
+To use this module, add it to the modules array in the `~/MagicMirror/config/config.js` file.
 
 ### Example 1
 ```javascript
