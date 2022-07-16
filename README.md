@@ -26,8 +26,6 @@ git pull
 ## Limitations
 
 * Only handles US dollars (limitation of the API)
-* Only handles a few metals 
-    * Does not handle commodities supported by the API. Only supports metals listed under "spot"
 
 ## Using the module
 
@@ -53,7 +51,7 @@ modules: [
         header: 'Precious Metals',
         position: "top_right",
         config: {
-            metals: ["gold","platinum"],
+            metals: ["gold","platinum", "rhodium"],
             updateInterval: 30 * 60 * 1000 // every 30 minutes
         }
     }
@@ -64,14 +62,14 @@ modules: [
 
 |Option|Default|Description|Acceptible Values|
 |---|---|---|---|
-|`metals`|`["silver","gold"]`|An array of metals you would like to see prices of.| See list on https://api.metals.live/. Any item listed under "spot" is acceptable. |
+|`metals`|`["silver","gold"]`|An array of metals you would like to see prices of.| See list on https://api.metals.live/. Any item listed under "spot" or "commodi
+" is acceptable. |
 |`updateInterval` | `60 * 60 * 1000` | How often to update prices - in milliseconds. Default is 1 hour. | Any integer. However, be careful when using low numbers |
 
 ## Future Improvements / Enhancements
 
 Future Ideas:
 
-* Support for commodities
 * Support for custom sorting of values (alphabetical by name, or sorted by value)
 
 ## Community Support

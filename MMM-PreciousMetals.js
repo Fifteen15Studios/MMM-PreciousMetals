@@ -14,8 +14,11 @@ Module.register("MMM-PreciousMetals", {
 	},
 	
 	start: function() {
-		this.url = 'https://api.metals.live/v1/spot';
-        this.prices = [];
+		this.baseUrl = 'https://api.metals.live';
+		this.metalsUrl = '/v1/spot';
+		this.commoditiesUrl = '/v1/spot/commodities';
+        this.metals = {};
+        this.commodities = {};
 		// get initial prices
 		this.getPrices();
 		// schedule updates every updateInterval
@@ -41,23 +44,43 @@ Module.register("MMM-PreciousMetals", {
 		var count = 0;
 		
 		// Parse through the prices of each item.
-		this.prices.forEach(obj => {			
-			Object.entries(obj).forEach(([key, value]) => {
-				// TODO: Make metal list into object, so it is sortable
-				// Only show item is it's in the list
-				if(this.config.metals.includes(key)) {
-					// Line break after each new item
-					if(count > 0) {
-						metalsHtml.innerHTML = metalsHtml.innerHTML + "<BR>";
+		if(this.metals.length > 0) {
+			this.metals.forEach(obj => {			
+				Object.entries(obj).forEach(([key, value]) => {
+					// Only show item is it's in the list
+					if(this.config.metals.includes(key)) {
+						// Line break after each new item
+						if(count > 0) {
+							metalsHtml.innerHTML = metalsHtml.innerHTML + "<BR>";
+						}
+						// Capitalize the name of the metal
+						var newKey = key[0].toUpperCase() + key.slice(1)
+						
+						metalsHtml.innerHTML = metalsHtml.innerHTML + newKey + ": $" + value;
+						count = count + 1;
 					}
-					// Capitalize the name of the metal
-					var newKey = key[0].toUpperCase() + key.slice(1)
-					
-					metalsHtml.innerHTML = metalsHtml.innerHTML + newKey + ": $" + value;
-					count = count + 1;
-				}
+				});
 			});
-		});
+		}
+		
+		if(this.commodities.length > 0) {
+			this.commodities.forEach(obj => {			
+				Object.entries(obj).forEach(([key, value]) => {
+					// Only show item is it's in the list
+					if(this.config.metals.includes(key)) {
+						// Line break after each new item
+						if(count > 0) {
+							metalsHtml.innerHTML = metalsHtml.innerHTML + "<BR>";
+						}
+						// Capitalize the name of the metal
+						var newKey = key[0].toUpperCase() + key.slice(1)
+						
+						metalsHtml.innerHTML = metalsHtml.innerHTML + newKey + ": $" + value;
+						count = count + 1;
+					}
+				});
+			});
+		}
 		
 		wrapper.appendChild(metalsHtml);
 		
@@ -66,7 +89,10 @@ Module.register("MMM-PreciousMetals", {
 	
 	getPrices: function() {
 		console.log(this.name + ": getting prices...");
-        this.sendSocketNotification("GET_METAL_PRICES", this.url);
+		newMetalsUrl = new URL(this.metalsUrl, this.baseUrl);
+        this.sendSocketNotification("GET_METAL_PRICES", newMetalsUrl);
+		newComUrl = new URL(this.commoditiesUrl, this.baseUrl);
+        this.sendSocketNotification("GET_COMMODITY_PRICES", newComUrl);
     },
 	
 	scheduleUpdate: function() {
@@ -77,8 +103,15 @@ Module.register("MMM-PreciousMetals", {
 	
 	socketNotificationReceived: function(notification, payload) {	
         if (notification === "METAL_PRICE_RESULTS") {
-            this.prices = payload;
+            this.metals = payload;
 			this.loaded = true;
+			console.log(this.name + ": metal prices received: " + payload.length);
+			this.updateDom();
+        }
+        else if (notification === "COMMODITY_PRICE_RESULTS") {
+            this.commodities = payload;
+			this.loaded = true;
+			console.log(this.name + ": commodity prices received: " + payload.length);
 			this.updateDom();
         }
     },
