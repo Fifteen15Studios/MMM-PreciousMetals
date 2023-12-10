@@ -13,13 +13,17 @@ module.exports = NodeHelper.create({
     },
 
     getMetals: function(url) {
-		fetch(url).then(response => {
+        fetch(url, {
+            headers: {
+                'Accept': 'application/json',
+            },
+        }).then(response => {
 			response.json().then(data => {
 				this.sendSocketNotification("METAL_PRICE_RESULTS", data);
-			})
+		    })
 		}), error => {
 			console.error(this.name + ' ERROR:', error);
-		}
+	    }
     },
     
     getCommodities: function(url) {
