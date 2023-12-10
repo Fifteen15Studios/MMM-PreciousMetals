@@ -65,7 +65,7 @@ modules: [
 ]
 ```
 
-### Example 2
+### Example 3
 ```javascript
 modules: [
     {
