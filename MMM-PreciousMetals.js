@@ -47,8 +47,16 @@ Module.register("MMM-PreciousMetals", {
 		var count = 0;
 		
 		if(this.metals != undefined) {
+            failed = false;
     		// Parse through the each item in json value
 			Object.entries(this.metals).forEach(([key, value]) => {
+                if(key == "status" && value == "failure") {
+                    failed = true;
+                    metalsHtml.innerHTML = "Error: ";
+                }
+                if(failed && key == "error_message") {
+                    metalsHtml.innerHTML = metalsHtml.innerHTML + value;
+                }
                 if(key == "metals") {
                     // parse each metal
                     Object.entries(value).forEach(([key1, value1])  => {
