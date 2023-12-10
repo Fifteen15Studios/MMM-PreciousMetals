@@ -88,7 +88,7 @@ modules: [
 |Option|Default|Description|Acceptible Values|
 |---|---|---|---|
 |`apiKey`|`""`|Required API Key from [metals.dev](https://metals.dev).|A valid [metals.dev](https://metals.dev) API key|
-|`currency`|`"USD"`|*OPTIONAL* Base currency for foreign exchange rates. Default is US Dollars.|See list at [https://metals.dev/symbols](https://metals.dev/symbols) under "Curencies"|
+|`currency`|`"USD"`|Currency code for the rates. Default is US Dollars.|See list at [https://metals.dev/symbols](https://metals.dev/symbols) under "Curencies"|
 |`unit`|`"toz"`|Unit of metal prices to be displayed. Default is Troy Ounces.|See list at [https://metals.dev/symbols](https://metals.dev/symbols) under "Unit"|
 |`showRetrievalTime`|`true`|Whether or not to display when the data was las retrieved from the server. Time is shown as UTC time.|`true` or `false`|
 |`metals`|`["silver","gold"]`|An array of metals you would like to see prices of.| See list at [https://metals.dev/symbols](https://metals.dev/symbols). Any item listed under "Metals" is acceptable.|
