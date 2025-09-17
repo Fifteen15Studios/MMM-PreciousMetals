@@ -15,7 +15,7 @@ Module.register("MMM-PreciousMetals", {
         showRetrievalTime: true,
 		metals: ["silver","gold"],
         currencies: [],
-		updateInterval: 3 * 60 * 60 * 1000 // every 3 hours, total of 248 per month in a 31 day month
+		updateInterval: 8 * 60 * 60 * 1000 // every 8 hours, total of 93 per month in a 31 day month
 	},
 
     // Set defaults for variables
